@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel='stylesheet' href='http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css'>
+    <style type="text/css">
+		.wrapper {
+		  margin-bottom: 80px;
+		}
+		
+		.form-signin {
+		  max-width: 1024px;
+		  padding: 15px 35px 45px;
+		  margin: 80px auto;
+		  background-color: #fff;
+		}
+		
+		svg {
+		  width: 40px;
+		  top: 0;
+		  left: 0;
+		  position: fixed;
+		}
+		div {
+		  position: fixed;
+		  top: 50%;
+		  left: 0;
+		  width: 100%;
+		  text-align: center;
+		  transform: translateY(-50%);
+		}
+		label {
+		  display: block;
+		  margin-top: 20px;
+		}  
+    </style>
+</head>
+<body>
+	<div>
+		<h1>The speed and randomness can be updated</h1>
+		<label> Speed <input id="speed" type="range" min="0" max="100"
+			value="20" />
+		</label> <label> Randomness <input id="randomness" type="range"
+			min="0" max="100" value="10" />
+		</label>
+	</div>
+	<svg viewBox="11.8 9 16 22">
+		<path d="M20,21l4.5,8l-3.4,2l-4.6-8.1L12,29V9l16,12H20z"></path></svg>
+		
+	
+	<script src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/127738/perlin.js'></script>
+		
+	<script type="text/javascript">
+		const el = document.querySelector('svg');
+		const speed = document.querySelector('#speed');
+		const randomness = document.querySelector('#randomness');
+		
+		
+		let random = 0;
+		function render (a) {
+		  const s = 0.001 * (speed.value / 100);
+		  const noiseX = (noise.simplex3(1, 0, a * s) + 1) / 2;
+		  const noiseY = (noise.simplex3(11, 0, a * s) + 1) / 2;
+		  
+		  random += randomness.value / 1000;
+		  const randX = noise.simplex3(1, 0, random) * window.innerWidth * 0.1;
+		  const randY = noise.simplex3(3, 0, random) * window.innerHeight * 0.1;
+		  const x = noiseX * innerWidth + randX;
+		  const y = noiseY * innerHeight + randY;
+		  
+		  el.style.transform = `translate(${x}px, ${y}px)`;
+		  requestAnimationFrame(render);
+		}
+		
+		//requestAnimationFrame(render);	
+	
+	</script>
+</body>
+</html>
