@@ -56,7 +56,7 @@ public class JiangsuTest {
 
       // System Property for Chrome Driver
       System.setProperty("webdriver.chrome.driver",
-          "D:\\DevProfile\\ChromeDriver\\chromedriver_91.exe");
+          "D:\\DevProfile\\WebDriver\\94.0.4606.41\\chromedriver.exe");
 
       // Instantiate a ChromeDriver class.
       WebDriver driver = new ChromeDriver();
