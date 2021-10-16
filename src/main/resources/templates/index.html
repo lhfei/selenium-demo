@@ -21,7 +21,7 @@
 	<script src="/jquery-3.6.0.min.js"></script>
 	
 	<script type="text/javascript">// 验证码组件初始化
-		initNECaptcha({
+		/**initNECaptcha({
 		    captchaId: '1a623022803d4cbc86fa157ec267bb36',
 		    element: '#captcha_div',
 		    mode: 'embed', // 如果要用触发式，这里改为float即可
@@ -36,6 +36,23 @@
 		    // 初始化成功后得到验证实例instance，可以调用实例的方法
 		}, function (err) {
 		    // 初始化失败后触发该函数，err对象描述当前错误信息
+		})*/
+		
+		
+		var captchaIns = null
+
+		// 若使用降级方案引用初始化js
+		// initNECaptcha替换成initNECaptchaWithFallback
+		initNECaptcha({
+		    captchaId: '从易盾申请的captchaId',
+		    element: '#captcha',
+		    mode: 'embed',
+		    width: '320px'
+		}, function  onload (instance) {
+		    captchaIns = instance
+		}, function  onerror (err) {
+		    // 初始化失败后触发该函数，err对象描述当前错误信息
+		    console.log(err)
 		})
 	</script>
 </body>
